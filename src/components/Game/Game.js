@@ -13,7 +13,6 @@ console.info({ answer });
 
 function Game() {
   const [submittedWord, setSubmittedWord] = React.useState([]);
-
   return (
     <>
       <Board submittedWord={submittedWord} />

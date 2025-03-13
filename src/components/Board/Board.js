@@ -1,14 +1,15 @@
 import React from "react";
+import Guess from "../Guess";
+
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
+import { range } from "../../utils";
 
 function Board({ submittedWord }) {
+  console.log("submittedWord v Board:", submittedWord);
   return (
     <div className="guess-result">
-      {submittedWord.map((word, index) => {
-        return (
-          <p className="guess" key={index}>
-            {word}
-          </p>
-        );
+      {range(NUM_OF_GUESSES_ALLOWED).map((num) => {
+        return <Guess key={num} value={submittedWord[num]} />;
       })}
     </div>
   );
