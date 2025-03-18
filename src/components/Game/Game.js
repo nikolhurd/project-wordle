@@ -7,7 +7,7 @@ import Input from "../Input";
 import Board from "../Board";
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
+export const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
 console.info({ answer });
 
