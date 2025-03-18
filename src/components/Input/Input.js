@@ -1,11 +1,22 @@
 import React from "react";
+import { answer } from "../Game/Game";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
-function Input({ submittedWord, setSubmittedWord }) {
+function Input({ submittedWord, setSubmittedWord, gameStatus, setGameStatus }) {
   const [word, setWord] = React.useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
-    setSubmittedWord([...submittedWord, word]);
+    const nextGuesses = [...submittedWord, word];
+    setSubmittedWord(nextGuesses);
+
+    /* logic for game status */
+    if (word === answer) {
+      setGameStatus("won");
+    } else if (nextGuesses.length >= NUM_OF_GUESSES_ALLOWED) {
+      setGameStatus("lost");
+    }
+
     setWord("");
   }
 
@@ -14,6 +25,7 @@ function Input({ submittedWord, setSubmittedWord }) {
       <label htmlFor="guess-input">Enter guess:</label>
       <input
         required
+        disabled={gameStatus !== "running"}
         id="guess-input"
         type="text"
         value={word}
